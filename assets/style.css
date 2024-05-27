@@ -44,3 +44,7 @@ footer {
     justify-content: center;
     font-size: 0.75rem;
 }
+.animate {
+    animation-duration: 1s;
+    scale: 1.2;
+}
