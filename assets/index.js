@@ -1,6 +1,3 @@
-// Globals
-
-
 // Elements
 const time = document.getElementById('time'),
       name = document.getElementById('name'),
@@ -8,11 +5,7 @@ const time = document.getElementById('time'),
       main = document.getElementById('main');
 
 // Contents' variables
-const greetings = document.createElement('h2'),
-      user = localStorage.getItem('user');
-
-// Contents factory
-greetings.innerHTML = `Good morning, <span id="name">${user}</span>`;
+const greetings = document.createElement('h2');
 
 // Function hall
 function prePad(n) {
@@ -34,39 +27,36 @@ function getYear() {
     console.log(year);
     year.innerText = `${right}`;
 }
-
 function getName() {
     let userName;
     name.addEventListener('keydown', (e) => {
         if (e.key === 'Enter') {
-            console.log(e.target.value);
-            userName = e.target.value;
+            userName = name.value;
             localStorage.setItem('user', userName);
             name.blur();
-            greetUser();
+            greetUser(userName);
         }
     });
 }
-function greetUser() {
+function greetUser(user) {
     name.remove();
+    greetings.innerHTML = `Good morning, <span id="name">${user}</span>`;
     main.appendChild(greetings);
     console.log(greetings.textContent);
 }
+
+// main()
+if (localStorage.getItem('user')) {         // Check if 'user' is !null
+    greetUser(localStorage.getItem('user'));
+}
+else {
+    getName();
+}
+getTime();
+getYear();
 
 // Events
 name.onfocus = function() {
     console.log("I'm clicked!");
     getName();
 }
-
-// main()
-console.log(greetings);
-if (user === undefined || user === null) {
-    getName();
-}
-else {
-    greetUser();
-}
-getTime();
-getYear();
-
