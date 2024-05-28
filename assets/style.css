@@ -18,7 +18,10 @@ header nav {
     align-items: center;
     justify-content: space-between;
 }
-
+nav img {
+    width: 2rem;
+    height: 2rem;
+}
 main {
     height: 90vh;
     display: flex;
