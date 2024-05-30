@@ -54,7 +54,7 @@ function greetUser() {
     console.log("greetUser() called. Checking localStorage...");
     let dataName = localStorage.getItem('name');
     console.log(`localStorage contains ${dataName}`);
-    if (dataName === undefined || dataName === null) {
+    if (dataName.length < 2) {
         console.log(`Toggling jest/prompt. Hiding jest.`);
         $.prompt.classList.remove('hidden');
         $.jest.classList.add('hidden');
@@ -98,8 +98,7 @@ document.addEventListener('click', (e) => {
             target.onblur = function () {
                 greetUser();
                 console.log("onblur()");
-            } 
-            
+            }
             break;
         case 'name':
             console.log(`ID: ${target.id} clicked. Value: ${target.id.textContent}`);
@@ -115,10 +114,16 @@ document.addEventListener('click', (e) => {
 $.prompt.addEventListener('keyup', (e) => {
     console.log(`Keyboard event detected: ${e.key} pressed.`);
     if (e.key === 'Enter') {
-        console.log(`"Enter" pressed. Saving data to localStorage.`)
-        $.prompt.blur();
-        localStorage.setItem('name', $.prompt.value);
-        greetUser();
+        // Check if $.prompt.value is empty
+        if ($.prompt.value.length < 2) {
+            greetUser();
+        }
+        else {
+            console.log(`"Enter" pressed. Saving data to localStorage.`)
+            $.prompt.blur();
+            localStorage.setItem('name', $.prompt.value);
+            greetUser();
+        }
     }
     else {
         console.log(`blur() happened. Saving data to localStorage.`)
