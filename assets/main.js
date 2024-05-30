@@ -9,7 +9,6 @@ const $ = {
     power: document.getElementById('power'),
     prompt: document.getElementById('prompt'),
     moment: document.getElementById('moment'),
-    
 };
 
 // FUNCTION HALL
@@ -29,9 +28,8 @@ function getTime() {
     setInterval(getTime, 1000);
 }
 // Time of Day
-function pleasantry() {
-    // Perform some pleasantries...
-    console.log("pleasantry() called. Checking time of day...");
+function timePeriod() {
+    // Determines time period...
     let hours = new Date().getHours(),
         now;
     if (hours > 18) {
@@ -45,34 +43,38 @@ function pleasantry() {
     }
     else {
         $.jest.innerHTML = "day";
-        console.log("Look at this!")
     }
-    console.log(`pleasantry() returns ${now}`);
+
+    // Update the background
+    if (now === "morning") {
+        document.querySelector('.one').style.background = "var(--matin1)";
+        document.querySelector('.two').style.background = "var(--matin2)";
+    }
+    else if (now === "afternoon") {
+        document.querySelector('.one').style.background = "var(--apres1)";
+        document.querySelector('.one').style.background = "var(--apres2)";
+    }
+    else {
+        document.querySelector('.one').style.background = "var(--soire1)";
+        document.querySelector('.two').style.background = "var(--soire2)";
+    }
     return now;
 }
 function greetUser() {
-    console.log("greetUser() called. Checking localStorage...");
-    let dataName = localStorage.getItem('name');
-    console.log(`localStorage contains ${dataName}`);
-    if (dataName === undefined || dataName === null) {
-        console.log(`Toggling jest/prompt. Hiding jest.`);
-        $.prompt.classList.remove('hidden');
-        $.jest.classList.add('hidden');
-    }
-    else {
-        console.log(`Toggling jest/prompt. Hiding prompt.`);
-        $.moment.innerText = `${pleasantry()}`;
-        $.name.innerText = `${localStorage.getItem('name')}`;
+    let data = localStorage.getItem('name');
+    if (data !== undefined || true) {
+        $.moment.innerText = `${timePeriod()}`;
+        $.name.innerText = `, ${localStorage.getItem('name')}`;
         $.prompt.classList.add('hidden');
         $.jest.classList.remove('hidden');
     }
+    else {
+        showGuestUI();
+    }
 }
-function promptToggle() {
-    console.log("promptToggle() called. Toggling main's children...");
-    console.log(`Toggling jest/prompt. Hiding jest.`);
-    $.prompt.classList.toggle('hidden');
-    $.jest.classList.toggle('hidden');
-    console.log("Refreshing the window now.");
+function showGuestUI() {
+    $.prompt.classList.remove('hidden');
+    $.jest.classList.add('hidden');
 }
 
 // MAIN()
@@ -90,20 +92,23 @@ document.addEventListener('click', (e) => {
     switch(target.id) {
         case 'power':
             console.log(`ID: ${target.id} clicked. Value: ${target.id.value}`);
-            console.log(`Clearing the localStorage.`)
+            console.log(`Clearing the localStorage.`);
             localStorage.clear();
             break;
         case 'prompt':
-            console.log(`ID: ${target.id} clicked. Value: ${localStorage.getItem('name')}`);
             target.onblur = function () {
-                greetUser();
-                console.log("onblur()");
-            } 
-            
+                if ($.prompt.value === '' || $.prompt.value === ' ') {
+                    $.prompt.placeholder = 'Please enter your name';
+                }
+                else {
+                    localStorage.setItem('name', $.prompt.value);
+                    greetUser();
+                }
+            }
             break;
         case 'name':
             console.log(`ID: ${target.id} clicked. Value: ${target.id.textContent}`);
-            promptToggle();
+            showGuestUI();
             break;
         default:
             console.log("Clicked an irrelevant part of the page...");
@@ -113,15 +118,18 @@ document.addEventListener('click', (e) => {
 });
 
 $.prompt.addEventListener('keyup', (e) => {
-    console.log(`Keyboard event detected: ${e.key} pressed.`);
+    console.log(`Keyboard event detected: ${e.key}`);
+    console.log(e);
     if (e.key === 'Enter') {
-        console.log(`"Enter" pressed. Saving data to localStorage.`)
-        $.prompt.blur();
-        localStorage.setItem('name', $.prompt.value);
-        greetUser();
+        console.log(`Target.value.length is ${e.target.value.length}`);
+        if (e.target.value.length > 2) {
+            localStorage.setItem('name', $.prompt.value);
+            $.prompt.blur();
+            greetUser();
+        }
+        else {
+            $.prompt.value = '';
+            $.prompt.placeholder = 'Please enter your name';
+        }
     }
-    else {
-        console.log(`blur() happened. Saving data to localStorage.`)
-        localStorage.setItem('name', $.prompt.value);
-    }
-})
+});
