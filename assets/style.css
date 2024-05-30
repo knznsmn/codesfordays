@@ -59,7 +59,6 @@
     opacity: 0;
     background: var(--apr4);
     background: var(--apres2);
-    /*-webkit-animation: gradient 4s ease-in-out infinite;*/
     animation: gradient 5s ease-in-out infinite;
 }
 body {
@@ -149,16 +148,6 @@ footer {
 .hidden {
     display: none;
 }
-
-/* Animations */
-/*@-webkit-keyframes gradient {*/
-/*    0%, 100% {*/
-/*        opacity: 0;*/
-/*    }*/
-/*    50% {*/
-/*        opacity: 1;*/
-/*    }*/
-/*}*/
 @keyframes gradient {
     0%, 100% {
         opacity: 0;
