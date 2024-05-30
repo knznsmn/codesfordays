@@ -22,14 +22,13 @@ function pre(n) {    // Functions for time
 
 // Time Worker
 function getTime() {
-    // console.log("getTime() called. Working the time chores...")
+    console.log("getTime() called. Working the time chores...")
     const now = new Date(),
           seconds = now.getSeconds(),
           minutes = now.getMinutes(),
           hours = now.getHours();
-
+    
     $.time.innerText = `${hours}:${pre(minutes)}:${pre(seconds)}`;
-    setInterval(getTime, 1000);
 }
 // Time of Day
 function timePeriod() {
@@ -82,8 +81,8 @@ function showGuestUI() {
 }
 
 // MAIN()
-getTime();
-greetUser();
+showGuestUI();
+setInterval(getTime, 1000);
 
 $.year.innerText = new Date().getFullYear();    // Update the copyright year.
 
