@@ -81,7 +81,7 @@ function showGuestUI() {
 }
 
 // MAIN()
-showGuestUI();
+greetUser();
 setInterval(getTime, 1000);
 
 $.year.innerText = new Date().getFullYear();    // Update the copyright year.
