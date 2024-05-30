@@ -11,6 +11,10 @@ const $ = {
     moment: document.getElementById('moment'),
 };
 
+const text = {
+    placeholder: 'Please enter your name',
+}
+
 // FUNCTION HALL
 function pre(n) {    // Functions for time
     return n < 10 ? '0' + n : n;
@@ -62,14 +66,14 @@ function timePeriod() {
 }
 function greetUser() {
     let data = localStorage.getItem('name');
-    if (data !== undefined || true) {
+    if (data === undefined || data === null || data === '') {
+        showGuestUI();
+    }
+    else {
         $.moment.innerText = `${timePeriod()}`;
         $.name.innerText = `, ${localStorage.getItem('name')}`;
         $.prompt.classList.add('hidden');
         $.jest.classList.remove('hidden');
-    }
-    else {
-        showGuestUI();
     }
 }
 function showGuestUI() {
@@ -98,7 +102,8 @@ document.addEventListener('click', (e) => {
         case 'prompt':
             target.onblur = function () {
                 if ($.prompt.value === '' || $.prompt.value === ' ') {
-                    $.prompt.placeholder = 'Please enter your name';
+                    $.prompt.value = '';
+                    $.prompt.placeholder = text.placeholder;
                 }
                 else {
                     localStorage.setItem('name', $.prompt.value);
@@ -125,11 +130,12 @@ $.prompt.addEventListener('keyup', (e) => {
         if (e.target.value.length > 2) {
             localStorage.setItem('name', $.prompt.value);
             $.prompt.blur();
+            $.prompt.value = '';
             greetUser();
         }
         else {
             $.prompt.value = '';
-            $.prompt.placeholder = 'Please enter your name';
+            $.prompt.placeholder = text.placeholder;
         }
     }
 });

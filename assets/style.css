@@ -13,18 +13,18 @@
     --alpha: hsla(258, 10%, 50%, 0.2);
     --raise: hsla(258, 10%, 50%, 0.5);
 
-    --mat1: hsla(169, 86%, 17%, 1);
-    --mat2: hsla(178, 78%, 33%, 1);
-    --mat3: hsla(132, 33%, 58%, 1);
+    --mat1: hsla(161, 24%, 62%, 1);
+    --mat2: hsla(69, 74%, 77%, 1);
+    --mat3: hsla(39, 87%, 75%, 1);
     --mat4: hsla(18, 56%, 72%, 1);
     --apr1: hsla(191, 20%, 50%, 1);
     --apr2: hsla(203, 17%, 36%, 1);
     --apr3: hsla(300, 17%, 75%, 1);
     --apr4: hsla(180, 13%, 57%, 1);
     --soi1: hsla(100, 59%, 31%, 1);
-    --soi2: hsla(225, 10%, 30%, 1);
-    --soi3: hsla(85, 72%, 40%, 1);
-    --soi4: hsla(340, 13%, 5%, 1);
+    --soi2: hsla(195, 95%, 25%, 1);
+    --soi3: hsla(148, 24%, 52%, 1);
+    --soi4: hsla(214, 31%, 26%, 1);
 
 
     /* Backgrounds */
@@ -32,7 +32,7 @@
     --matin2: linear-gradient(45deg, var(--mat3), var(--mat4) 50%, var(--mat3) 100%);
     --apres1: linear-gradient(45deg, var(--apr2), var(--apr1) 50%, var(--apr2) 100%);
     --apres2: linear-gradient(45deg, var(--apr4), var(--apr3) 50%, var(--apr4) 100%);
-    --soire1: linear-gradient(45deg, var(--soi1), var(--soi3) 50%, var(--soi1) 100%);
+    --soire1: linear-gradient(135deg, var(--soi1), var(--soi3) 50%, var(--soi1) 100%);
     --soire2: linear-gradient(45deg, var(--soi4), var(--soi2) 50%, var(--soi4) 100%);
 }
 * {
