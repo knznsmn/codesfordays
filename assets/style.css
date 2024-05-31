@@ -140,6 +140,7 @@ main h2 {
     text-align: center;
     cursor: default;
     margin-bottom: 2rem;
+    overflow-wrap: break-word;
 }
 main #prompt {
     height: 3rem;
