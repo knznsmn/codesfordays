@@ -85,7 +85,7 @@ function greetUser() {
 }
 function showGuestUI() {
     $.moment.innerText = `${timePeriod()}`;
-    $.name.innerText = `, beautiful.`;
+    $.name.innerText = `, beautiful person. You're a stranger. Let's change that.`;
     $.prompt.classList.remove('hidden');
     // $.jest.classList.add('hidden');
     $.btnPower.classList.add('hidden');
