@@ -41,7 +41,7 @@ function timePeriod() {
     let hours = new Date().getHours(),
         now;
 
-    if (hours > 18) {
+    if (hours >= 18) {
         now = "evening";
     }
     else if (hours >= 12) {
