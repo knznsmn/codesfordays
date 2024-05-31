@@ -9,6 +9,8 @@ const $ = {
     power: document.getElementById('power'),
     prompt: document.getElementById('prompt'),
     moment: document.getElementById('moment'),
+
+    btnPower: document.querySelector('.power'),
 };
 
 const text = {
@@ -29,12 +31,16 @@ function getTime() {
           hours = now.getHours();
     
     $.time.innerText = `${hours}:${pre(minutes)}:${pre(seconds)}`;
+    // if ((hours === 18 || hours === 12 || hours === 0) && (minutes === 0 && seconds === 0)) {
+    //     updateBg();
+    // }
 }
 // Time of Day
 function timePeriod() {
     // Determines time period...
     let hours = new Date().getHours(),
         now;
+
     if (hours > 18) {
         now = "evening";
     }
@@ -47,13 +53,16 @@ function timePeriod() {
     else {
         $.jest.innerHTML = "day";
     }
-
-    // Update the background
-    if (now === "morning") {
+    return now;
+}
+function updateBg() {
+    console.log(`updateBg() called. Updating the background according to time of day.`)
+    const s = timePeriod();
+    if (s === "morning") {
         document.querySelector('.one').style.background = "var(--matin1)";
         document.querySelector('.two').style.background = "var(--matin2)";
     }
-    else if (now === "afternoon") {
+    else if (s === "afternoon") {
         document.querySelector('.one').style.background = "var(--apres1)";
         document.querySelector('.one').style.background = "var(--apres2)";
     }
@@ -61,53 +70,62 @@ function timePeriod() {
         document.querySelector('.one').style.background = "var(--soire1)";
         document.querySelector('.two').style.background = "var(--soire2)";
     }
-    return now;
 }
 function greetUser() {
+    console.log(`greetUser() called. Updating the interface.`)
     let data = localStorage.getItem('name');
     if (data === undefined || data === null || data === '') {
+        console.log(`Empty localStorage, Calling showGuestUI() now...`)
         showGuestUI();
     }
     else {
-        $.moment.innerText = `${timePeriod()}`;
-        $.name.innerText = `, ${localStorage.getItem('name')}`;
-        $.prompt.classList.add('hidden');
-        $.jest.classList.remove('hidden');
+        showUserUI();
+        console.log(`Data in localStorage, Calling showUserUI() now...`)
     }
 }
 function showGuestUI() {
+    $.moment.innerText = `${timePeriod()}`;
+    $.name.innerText = `, beautiful.`;
     $.prompt.classList.remove('hidden');
-    $.jest.classList.add('hidden');
+    // $.jest.classList.add('hidden');
+    $.btnPower.classList.add('hidden');
+}
+function showUserUI() {
+    $.moment.innerText = `${timePeriod()}`;
+    $.name.innerText = `, ${localStorage.getItem('name')}`;
+    $.prompt.classList.add('hidden');
+    $.jest.classList.remove('hidden');
+    $.btnPower.classList.remove('hidden');
 }
 
 // MAIN()
-greetUser();
+updateBg();
 setInterval(getTime, 1000);
+greetUser();
 
-$.year.innerText = new Date().getFullYear();    // Update the copyright year.
+$.year.innerText = `${new Date().getFullYear()}`;    // Update the copyright year.
 
 // EVENT HANDLERS
 document.addEventListener('click', (e) => {
     let target = e.target;
     console.log(`mouseEvent detected: ${target}`);
-    console.log(`Target's innerHTML's ${target.innerText}.`);
     console.log(`Starting mouseEvent switch... Checking IDs.`);
     switch(target.id) {
         case 'power':
-            console.log(`ID: ${target.id} clicked. Value: ${target.id.value}`);
-            console.log(`Clearing the localStorage.`);
+            console.log(`Power button clicked. Clearing the localStorage...`);
             localStorage.clear();
+            greetUser();
             break;
         case 'prompt':
             target.onblur = function () {
                 if ($.prompt.value === '' || $.prompt.value === ' ') {
-                    $.prompt.value = '';
                     $.prompt.placeholder = text.placeholder;
                 }
                 else {
                     localStorage.setItem('name', $.prompt.value);
                     greetUser();
                 }
+                $.prompt.value = '';
             }
             break;
         case 'name':

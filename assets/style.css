@@ -72,10 +72,11 @@ section#page {
     justify-content: center;
     grid-template-areas:
         "header header header"
+        "menu menu menu"
         "left main right"
         "footer footer footer";
     grid-template-columns: 0.25fr 1fr 0.25fr;
-    grid-template-rows: 3rem 1fr 3rem;
+    grid-template-rows: 3rem 3rem 1fr 3rem;
 }
 header {
     grid-area: header;
@@ -83,7 +84,7 @@ header {
     justify-content: space-between;
     margin: 0.5rem;
 }
-header img, li {
+header li, img, button {
     list-style: none;
     width: 2rem;
     height: 2rem;
@@ -94,6 +95,28 @@ header ul {
 header li {
     margin-left: 1rem;
 }
+
+article.menu {
+    grid-area: menu;
+    display: flex;
+    justify-content: flex-end;
+    align-content: center;
+    margin: 0.5rem;
+}
+article button {
+    background: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    border-radius: 50%;
+}
+article button:hover {
+    box-shadow: var(--raise) 0 5px 5px;
+    border: solid var(--raise);
+    scale: 1.2;
+}
+
 aside.left {
     grid-area: left;
 }
@@ -115,11 +138,11 @@ main h1 {
 main h2 {
     font-size: 2rem;
     cursor: default;
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
 }
 @media (width <= 646px) {
     main h2 {
-        font-size: 1.5rem;
+        font-size: 1.2rem;
         text-align: center;
     }
     footer {
@@ -128,7 +151,6 @@ main h2 {
 }
 main #prompt {
     height: 2rem;
-    margin-top: 1.5rem;
     background-color: var(--alpha);
     border: var(--raise);
     text-align: center;
