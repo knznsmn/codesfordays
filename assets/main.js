@@ -64,7 +64,7 @@ function updateBg() {
     }
     else if (s === "afternoon") {
         document.querySelector('.one').style.background = "var(--apres1)";
-        document.querySelector('.one').style.background = "var(--apres2)";
+        document.querySelector('.two').style.background = "var(--apres2)";
     }
     else {
         document.querySelector('.one').style.background = "var(--soire1)";
