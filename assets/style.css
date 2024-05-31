@@ -136,7 +136,7 @@ main h1 {
     cursor: default;
 }
 main h2 {
-    font-size: 2rem;
+    font-size: 1rem;
     cursor: default;
     margin-bottom: 2rem;
 }
@@ -166,25 +166,9 @@ footer {
 .hidden {
     display: none;
 }
-@media (width < 646px) {
+@media (width > 646px) {
     main h2 {
-        font-size: 1.2rem;
-    }
-    main #prompt {
-        width: 75vw;
-    }
-    footer {
-        font-size: 0.75rem;
-    }
-}
-@media (width < 359px) {
-    main h2 {
-        font-size: 0.9rem;
-    }
-    main #prompt {
-        width: 80vw;
-        height: 20vh;
-        font-size: 1.2rem;
+        font-size: 2rem;
     }
 }
 @keyframes gradient {
