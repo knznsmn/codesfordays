@@ -108,7 +108,7 @@ article button {
     display: flex;
     justify-content: center;
     align-items: center;
-    border: none;
+    border: inset;
     border-radius: 50%;
 }
 article button:hover {
@@ -136,7 +136,8 @@ main h1 {
     cursor: default;
 }
 main h2 {
-    font-size: 1rem;
+    font-size: 1.2rem;
+    text-align: center;
     cursor: default;
     margin-bottom: 2rem;
 }
