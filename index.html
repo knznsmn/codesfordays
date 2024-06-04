@@ -27,16 +27,11 @@
             <img src="assets/img/icons/logo.svg" alt="Logo">
             <nav>
                 <ul>
-                    <li class="github"><img src="assets/img/icons/github.svg" alt=""></li>
-                    <li class="notes"><img src="assets/img/icons/notes.svg" alt=""></li>
+                    <li class="github"><i class="igithub"></i></li>
+                    <li class="notes"><i class="inotes"></i></li>
                 </ul>
             </nav>
         </header>
-        <article class="menu">
-            <button class="power hidden">
-                <img id="power" src="assets/img/icons/power.svg" alt="Reset button">
-            </button>
-        </article>
         <aside class="left">
             <h3></h3>
 
@@ -44,12 +39,24 @@
         <main>
             <h1 id="time"></h1>
             <h2 id="jest">Good <span id="moment">day and welcome!</span><span id="name"></span></h2>
+            <p id="message"></p>
             <label>
                 <input id="prompt" type="text" placeholder="What is your name?">
             </label>
         </main>
         <aside class="right">
             <h3></h3>
+            <article class="menu">
+                <button class="tools power hidden">
+                    <i id="power" class="ibin"></i>
+                </button>
+                <button class="tools hidden">
+                    <i id="timer" class="itimer"></i>
+                </button>
+                <button class="tools hidden">
+                    <i id="todo" class="itodo"></i>
+                </button>
+            </article>
 
         </aside>
         <footer>
