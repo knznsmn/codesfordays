@@ -40,6 +40,103 @@
     margin: 0;
     padding: 0;
 }
+@font-face {
+    font-family: 'icon';
+    src:  url('fonts/icon.eot?f9di9j');
+    src:  url('fonts/icon.eot?f9di9j#iefix') format('embedded-opentype'),
+    url('fonts/icon.ttf?f9di9j') format('truetype'),
+    url('fonts/icon.woff?f9di9j') format('woff'),
+    url('fonts/icon.svg?f9di9j#icon') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: block;
+}
+
+i {
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'icon' !important;
+    speak: never;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    font-size: 1.2rem;
+
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.inotes:before {
+    content: "\e900";
+    font-size: 1.4rem;
+}
+.ilogo:before {
+    content: "\e901";
+}
+.iin:before {
+    content: "\e902";
+    color: #0077b5;
+}
+.ix:before {
+    content: "\e903";
+}
+.icss:before {
+    content: "\e904";
+    color: #1572b6;
+}
+.ihtml:before {
+    content: "\e905";
+    color: #e34f26;
+}
+.ijs:before {
+    content: "\e906";
+    color: #f7df1e;
+}
+.imute:before {
+    content: "\e909";
+}
+.ipause:before {
+    content: "\e90a";
+}
+.iplay:before {
+    content: "\e90b";
+}
+.iswitch:before {
+    content: "\e90c";
+}
+.irepeat:before {
+    content: "\e90d";
+}
+.istop:before {
+    content: "\e90e";
+}
+.ichecked:before {
+    content: "\e90f";
+}
+.iunchecked:before {
+    content: "\e910";
+}
+.iclose:before {
+    content: "\e911";
+}
+.ibin:before {
+    content: "\e912";
+}
+.itodo:before {
+    content: "\e913";
+    font-size: 1rem;
+}
+.itimer:before {
+    content: "\e914";
+}
+.igithub:before {
+    content: "\e907";
+}
+.ihome:before {
+    content: "\e908";
+}
 .bg {
     position: relative;
 }
@@ -103,14 +200,7 @@ article.menu {
     align-content: center;
     margin: 0.5rem;
 }
-article button {
-    background: transparent;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: inset;
-    border-radius: 50%;
-}
+
 article button:hover {
     box-shadow: var(--raise) 0 5px 5px;
     border: solid var(--raise);
@@ -122,6 +212,17 @@ aside.left {
 }
 aside.right {
     grid-area: right;
+}
+aside.right .menu {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+}
+aside.right button {
+    background: transparent;
+    border: 1px solid;
+    border-radius: 50%;
+    margin: .5rem 0;
 }
 main {
     grid-area: main;
@@ -139,14 +240,17 @@ main h2 {
     font-size: 1.2rem;
     text-align: center;
     cursor: default;
-    margin-bottom: 2rem;
     overflow-wrap: break-word;
+}
+main p {
+    margin: 1rem;
 }
 main #prompt {
     height: 3rem;
     width: 100%;
     font-size: 1rem;
     background-color: var(--alpha);
+    margin-top: 1rem;
     border: var(--raise);
     text-align: center;
     border-radius: 15%;

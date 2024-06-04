@@ -9,12 +9,14 @@ const $ = {
     power: document.getElementById('power'),
     prompt: document.getElementById('prompt'),
     moment: document.getElementById('moment'),
-
+    message: document.getElementById('message'),
     btnPower: document.querySelector('.power'),
+    tools : document.querySelectorAll('.tools')
 };
 
 const text = {
     placeholder: 'Please enter your name',
+    stranger   : 'You\'re a stranger. Let\'s change that.'
 }
 
 // FUNCTION HALL
@@ -71,6 +73,18 @@ function updateBg() {
         document.querySelector('.two').style.background = "var(--soire2)";
     }
 }
+function message(s) {
+    switch (s) {
+        case 'p':
+            console.log(`asdasdasdasd`);
+            break;
+        default:
+            const stranger = document.createElement('p');
+            stranger.innerText = `You're a stranger. Let's change that.`;
+            $.main.appendChild(stranger);
+            break;
+    }
+}
 function greetUser() {
     console.log(`greetUser() called. Updating the interface.`)
     let data = localStorage.getItem('name');
@@ -85,17 +99,23 @@ function greetUser() {
 }
 function showGuestUI() {
     $.moment.innerText = `${timePeriod()}`;
-    $.name.innerText = `, beautiful person. You're a stranger. Let's change that.`;
+    $.name.innerText = `... beautiful person!`;
+    $.message.innerText = text.stranger;
+    $.message.classList.remove('hidden');
     $.prompt.classList.remove('hidden');
-    // $.jest.classList.add('hidden');
-    $.btnPower.classList.add('hidden');
+    $.tools.forEach(function (element) {
+        element.classList.add('hidden');
+    })
 }
 function showUserUI() {
     $.moment.innerText = `${timePeriod()}`;
     $.name.innerText = `, ${localStorage.getItem('name')}`;
     $.prompt.classList.add('hidden');
+    $.message.classList.add('hidden');
     $.jest.classList.remove('hidden');
-    $.btnPower.classList.remove('hidden');
+    $.tools.forEach(function (element) {
+        element.classList.remove('hidden');
+    })
 }
 
 // MAIN()
